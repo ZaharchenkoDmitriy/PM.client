@@ -76,4 +76,9 @@ export class PopUpService {
     const state = this.states.getValue().find(st => st.title === title);
     return state;
   }
+
+
+  confirm(text: string) {
+    return confirm(text);
+  }
 }

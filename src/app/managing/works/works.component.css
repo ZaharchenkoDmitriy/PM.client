@@ -38,13 +38,13 @@ ul {
 .group-title {
   font-size: 1.7rem;
   font-weight: bold;
+  flex-grow: 1;
 }
 .create-work-button {
-  width: 31px;
-  margin-top: -5px;
-  margin-right: 15px;
+  width: 30px;
+  height: 30px;
   position: relative;
-  background-image: url("/assets/img/icons/create-work.png");
+  background-image: url('/assets/img/icons/category-edit.png');
   background-color: transparent;
   background-size: cover;
   border: none;
@@ -59,13 +59,6 @@ ul {
   margin-bottom: 7px;
   display: flex;
   font-weight: bold;
-  justify-content: space-around;
-}
-.work li:before {
-  border-left: 2px solid #2F333F;
-  display: inline;
-  margin-left: -10px;
-  content: '';
 }
 
 #category-edition-form {
@@ -73,8 +66,46 @@ ul {
   height: 40%;
 }
 
-/*#container {*/
-  /*height: 35%;*/
-  /*padding: 0 5%;*/
-/*}*/
+.hidden-delete {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  margin-left: -2rem;
+  opacity: 0.5;
+}
+.hidden-delete:after {
+  border-left: 2px solid #2F333F;
+  height: 2.4rem;
+  display: inline-block;
+  margin-left: 1.5rem;
+  margin-top: -0.2rem;
+  content: '';
+  width: 1.5rem;
+  background-color: #F2F6FF;
+}
+.hidden-delete:hover {
+  margin-left: -1rem;
+  margin-right: 1rem;
+  opacity: 1;
+}
+.hidden-delete:hover:after {
+  margin-left: 2.2rem;
+  width: 0;
+}
 
+.delete-category {
+  background-image: url("/assets/img/icons/trash.png");
+}
+.delete-category:after {
+  background-color: #666E7F;
+  border-left: 2px solid #F2F6FF;
+}
+.category-buttons {
+  display: flex;
+  width: 30%;
+  justify-content: flex-end;
+}
+.category-buttons * {
+  margin-top: -3px;
+  margin-left: 5px;
+}

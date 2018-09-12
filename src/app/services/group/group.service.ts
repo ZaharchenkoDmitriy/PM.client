@@ -33,4 +33,14 @@ export class GroupService {
     this.groupsArr.push(category);
     this.groups.next(this.groupsArr);
   }
+
+  deleteWork(work: Work) {
+    const group = this.groupsArr.find((gr) => gr.works.indexOf(work) !== -1);
+    group.works = group.works.filter((wk) => wk !== work );
+    this.groups.next(this.groupsArr);
+  }
+  deleteCategory(category: Group) {
+    this.groupsArr = this.groupsArr.filter((cgr) => cgr !== category);
+    this.groups.next(this.groupsArr);
+  }
 }

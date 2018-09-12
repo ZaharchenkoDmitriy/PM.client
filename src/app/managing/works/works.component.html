@@ -10,14 +10,14 @@
       </ul>
     </div>
     <div style="width: 95%; margin-left: 2.5%;" ngSwitch="{{popUpService.currentState.title}}">
-        <div *ngSwitchCase="'category'">
-          <app-edit-category-form
-            [category]="selectedGroup"></app-edit-category-form>
-        </div>
-          <div *ngSwitchCase="'create-work'">
-          <app-create-work-form
-            [group]="selectedGroup"></app-create-work-form>
-        </div>
+      <div *ngSwitchCase="'category'">
+        <app-edit-category-form
+          [category]="selectedGroup"></app-edit-category-form>
+      </div>
+      <div *ngSwitchCase="'create-work'">
+        <app-create-work-form
+          [group]="selectedGroup"></app-create-work-form>
+      </div>
     </div>
   </div>
 </div>
@@ -40,10 +40,13 @@
          class="card-header"
          [attr.data-target]='"#collapse" + group.id'
          data-toggle="collapse">
+      <div class="remove-img hidden-delete delete-category" (click)="deleteCategory(group)"></div>
       <div class="group-title">{{group.title}}</div>
 
-      <button class="create-work-button"
-        (click)="openCategoryEditForm(group)"></button>
+      <div class="category-buttons">
+        <button class="create-work-button"
+                (click)="openCategoryEditForm(group)"></button>
+      </div>
     </div>
 
     <div id="collapse{{group.id}}"
@@ -51,8 +54,9 @@
          data-parent="#accordion">
       <div class="card-body work">
         <li *ngFor="let work of group.works">
-          <span style="width: 70%">{{work.title}}</span>
-          <span style="width: 25%; text-align: end">{{work.price}}</span>
+          <span (click)="deleteWork(work)" class="hidden-delete remove-work remove-img"></span>
+          <span style="flex-grow: 1">{{work.title}}</span>
+          <span style="width: 25%; margin-right: 2px; text-align: end;">{{work.price}} UAH</span>
         </li>
       </div>
     </div>

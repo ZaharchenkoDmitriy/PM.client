@@ -40,4 +40,16 @@ export class WorksComponent implements OnInit{
   openCreateCategoryForm() {
     this.categoryCreation = true;
   }
+
+  deleteWork(work: Work) {
+    if (this.popUpService.confirm('Are you sure?')){
+      this.groupsService.deleteWork(work);
+    }
+  }
+  deleteCategory(category: Group) {
+    if (this.popUpService.confirm('Are you sure?')) {
+      this.groupsService.deleteCategory(category);
+    }
+    event.stopPropagation();
+  }
 }
