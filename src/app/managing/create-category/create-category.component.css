@@ -1,0 +1,10 @@
+.category-button {
+  display: inline-block;
+  margin: auto;
+  width: 10rem;
+}
+
+.form-input-light {
+  width: 100%;
+  margin-bottom: 10px;
+}

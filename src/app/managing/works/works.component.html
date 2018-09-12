@@ -1,0 +1,60 @@
+<div *ngIf="groupEdition" id="pop-up-background" (click)="groupEdition = false;">
+  <div id="container"
+       (click)="$event.stopPropagation()">
+    <div id="pop-up-navigation">
+      <ul>
+        <li *ngFor="let state of popUpService.currentStates"
+            [style.width]="100/popUpService.currentStates.length + '%'"
+            [class]="state.number == popUpService.currentState.number ? 'active' : ''">
+        </li>
+      </ul>
+    </div>
+    <div style="width: 95%; margin-left: 2.5%;" ngSwitch="{{popUpService.currentState.title}}">
+        <div *ngSwitchCase="'category'">
+          <app-edit-category-form
+            [category]="selectedGroup"></app-edit-category-form>
+        </div>
+          <div *ngSwitchCase="'create-work'">
+          <app-create-work-form
+            [group]="selectedGroup"></app-create-work-form>
+        </div>
+    </div>
+  </div>
+</div>
+
+<app-create-category
+  *ngIf="categoryCreation"
+  (close)="categoryCreation = false"
+  (create)="categoryCreation=false"></app-create-category>
+
+<div id="headers">
+  <span style="width: 70%">Title</span>
+  <div id='add-category-button' (click)="openCreateCategoryForm()"></div>
+  <span style="width: 25%; text-align: end">Price</span>
+</div>
+<ul id="accordion">
+  <ul *ngFor="let group of groups"
+      class="card">
+
+    <div id="group"
+         class="card-header"
+         [attr.data-target]='"#collapse" + group.id'
+         data-toggle="collapse">
+      <div class="group-title">{{group.title}}</div>
+
+      <button class="create-work-button"
+        (click)="openCategoryEditForm(group)"></button>
+    </div>
+
+    <div id="collapse{{group.id}}"
+         class="collapse"
+         data-parent="#accordion">
+      <div class="card-body work">
+        <li *ngFor="let work of group.works">
+          <span style="width: 70%">{{work.title}}</span>
+          <span style="width: 25%; text-align: end">{{work.price}}</span>
+        </li>
+      </div>
+    </div>
+  </ul>
+</ul>

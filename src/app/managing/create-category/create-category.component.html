@@ -1,0 +1,19 @@
+<div id="pop-up-background" (click)="emitClose()">
+  <form (submit)="createCategory()"
+        id="container"
+        (click)="$event.stopPropagation()">
+    <button (click)="emitClose()"
+            id="close-button">
+    </button>
+    <h2>Category</h2>
+    <label for="category-title"
+           class="form-label-light">Title</label>
+    <input type="text"
+           class="form-input-light"
+           name="category-title"
+           autofocus
+           [(ngModel)]="category.title">
+    <button type="submit"
+            class="light-button category-button">Create</button>
+  </form>
+</div>

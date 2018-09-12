@@ -1,0 +1,27 @@
+<div>
+  <form (submit)="createWork()">
+    <h2>
+      Добавить работу
+    </h2>
+
+    <div class="form-input-light">
+      <label for="work-title">название работы<span>{{work.title}}</span></label>
+      <input type="text"
+             name='work-title'
+             [(ngModel)]="work.title">
+    </div>
+
+    <div class="form-input-light">
+      <label for="work-price">цена <span>{{work.price}}</span></label>
+      <input type="text"
+             name='work-price'
+             [(ngModel)]="work.price">
+    </div>
+    <button type="submit"
+            id="create-button"
+            class="light-button">
+      Создать
+    </button>
+  </form>
+</div>
+

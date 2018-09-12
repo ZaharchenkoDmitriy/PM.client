@@ -1,0 +1,141 @@
+/* You can add global styles to this file, and also import other style files */
+
+.form-input-light {
+  position: relative;
+  margin: 0.5rem 0;
+}
+
+.form-input-light input {
+  height: 3.1rem;
+  margin-top: 0.2rem;
+  width: 95%;
+  position: absolute;
+  left: 2.5%;
+  padding: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2F333F;
+  border: 1px solid #7887a3;
+  background-color: #7887a3;
+  z-index: 2;
+}
+
+.form-input-light label span {
+  position: absolute;
+  color: rgba(242, 246, 255, 0.51);
+  left: 2.5%;
+  margin-left: 5px;
+  line-height: 2.5rem;
+}
+
+.form-input-light label {
+  z-index: 3;
+  position: relative;
+  height: 3.5rem;
+  width: 100%;
+  padding: 5px;
+  background: -moz-linear-gradient(left, #666e7f 0%, #666e7f 10%, #7887a3 30%, #7887a3 50%, #7887a3 70%, #666e7f 90%, #666e7f 100%);
+  background: -webkit-linear-gradient(left, #666e7f 0%,#666e7f 10%,#7887a3 30%,#7887a3 50%,#7887a3 70%,#666e7f 90%,#666e7f 100%);
+  background: linear-gradient(to right, #666e7f 0%,#666e7f 10%,#7887a3 30%,#7887a3 50%,#7887a3 70%,#666e7f 90%,#666e7f 100%);
+  box-shadow: 0px 0px 6px 1px #131419;
+  color: rgba(242, 246, 255, 0.91);
+  text-align: right;
+  font-size: 1.7rem;
+  border: 1px solid #2F333F;
+}
+
+.form-input-light label:after {
+  content: '';
+  margin-left: 2.5%;
+}
+
+.form-input-light label:hover {
+  z-index: 1;
+}
+
+.form-input-light input:hover {
+  z-index: 4;
+}
+
+.form-input-light input:focus {
+  z-index: 4;
+}
+
+.form-input-dark {
+
+}
+
+.light-button {
+  background-color: #CED6E5;
+  text-align: center;
+  padding: 5px;
+  font-weight: 800;
+  font-size: 1.5rem;
+  border: 1px solid #2F333F;
+  border-radius: 2px;
+}
+
+#close-button {
+  background-image: url("/assets/img/icons/delete.png");
+  background-size: cover;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  border: none;
+  display: inline-block;
+  float: right;
+  margin-top: 8px;
+}
+
+h2 {
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 2rem;
+  color: #F2F6FF;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+#pop-up-background {
+  position: absolute;
+  display: flex;
+  background-color: rgba(155, 156, 150, 0.28);
+  z-index: 2000;
+  bottom: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+#container {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  padding: 5% 5% 15% 5%;
+  border-bottom: 2px solid #F2F6FF;
+  background-color: #2F333F;
+}
+
+#pop-up-navigation {
+  position: absolute;
+  top: 0rem;
+  width: 100%;
+  left: 0;
+}
+#pop-up-navigation ul {
+  list-style-type: none;
+  display: flex;
+  width: 100%;
+  height: 0.6rem;
+}
+#pop-up-navigation ul li {
+  display: inline-block;
+  background-color: rgba(196, 213, 228, 0.4);
+  background-size: cover;
+  border-radius: 1px;
+}
+#pop-up-navigation ul li.active {
+  background-color: rgba(196, 213, 228, 0.68);
+}
+
+#container > div {
+}

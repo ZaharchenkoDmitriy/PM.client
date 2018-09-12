@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let work of works">
+    {{work.title}}
+  </li>
+</ul>
+
+<button (click)="openAddWorkForm()">
+  Add work
+</button>

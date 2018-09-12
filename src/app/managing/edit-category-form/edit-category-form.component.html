@@ -1,0 +1,16 @@
+<div>
+  <form (submit)="saveCategory()">
+    <h2>Категория</h2>
+
+    <div class="form-input-light" style="width: 100%;">
+      <label for="category-title">название категории <span>{{category.title}}</span></label>
+      <input type="text"
+             name="category-title"
+             [(ngModel)]="category.title">
+    </div>
+
+    <button class="light-button" type="submit" id="save-button">
+      Сохранить
+    </button>
+  </form>
+</div>
