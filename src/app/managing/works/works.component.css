@@ -27,7 +27,7 @@ ul {
   padding: 0;
   margin: 0;
 }
-#group {
+#category {
   height: 4rem;
   display: flex;
   justify-content: space-between;
@@ -35,7 +35,7 @@ ul {
   color: #CED6E5;
   padding-bottom: 0;
 }
-.group-title {
+.category-title {
   font-size: 1.7rem;
   font-weight: bold;
   flex-grow: 1;

@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Work} from '../../../models/work';
 import {WorksService} from '../../../services/work/works-service.service';
-import {GroupService} from '../../../services/group/group.service';
+import {CategoryService} from '../../../services/category/category.service';
 import {PopUpService} from '../../../services/pop_up/pop-up.service';
-import {Group} from '../../../models/group';
+import {Category} from '../../../models/category';
 
 @Component({
   selector: 'app-create-work-form',
@@ -11,13 +11,18 @@ import {Group} from '../../../models/group';
   styleUrls: ['./create-work-form.component.css']
 })
 export class CreateWorkFormComponent implements OnInit {
-  public work: Work;
+  public viewWork: Work;
 
-  @Input() group: Group;
+  @Input() work: Work;
+  @Input() category: Category;
   @Output() close: EventEmitter<Work> = new EventEmitter();
 
-  constructor(private groupService: GroupService, private popUpService: PopUpService) {
-    this.work = new Work('', 0);
+  constructor(private categoryService: CategoryService, private popUpService: PopUpService) {
+    if (this.work) {
+      this.viewWork = this.work;
+    } else {
+      this.viewWork = new Work('', 0);
+    }
   }
 
   ngOnInit() {
@@ -25,8 +30,14 @@ export class CreateWorkFormComponent implements OnInit {
   }
 
   createWork() {
-    this.groupService.createWorkForGroup(this.work, this.group);
-    this.work = new Work('', 0.00);
+    this.categoryService.createWorkForCategory(this.viewWork, this.category);
+    this.viewWork = new Work('', 0.00);
+    this.close.emit();
+  }
+
+  updateWork() {
+    this.work = this.viewWork;
+    this.categoryService.updateWork(this.work);
     this.close.emit();
   }
 }

@@ -8,7 +8,7 @@ export class WorksService {
   private works: Work[] = [];
 
   constructor() {
-    let work = new Work('title', 20);
+    const work = new Work('title', 20);
     work.title = 'title';
     this.works.push(work);
   }

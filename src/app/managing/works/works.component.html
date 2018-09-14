@@ -1,4 +1,4 @@
-<div *ngIf="groupEdition" id="pop-up-background" (click)="groupEdition = false;">
+<div *ngIf="categoryEdition" id="pop-up-background" (click)="categoryEdition = false;">
   <div id="container"
        (click)="$event.stopPropagation()">
     <div id="pop-up-navigation">
@@ -12,11 +12,15 @@
     <div style="width: 95%; margin-left: 2.5%;" ngSwitch="{{popUpService.currentState.title}}">
       <div *ngSwitchCase="'category'">
         <app-edit-category-form
-          [category]="selectedGroup"></app-edit-category-form>
+          [category]="selectedCategory"></app-edit-category-form>
       </div>
       <div *ngSwitchCase="'create-work'">
         <app-create-work-form
-          [group]="selectedGroup"></app-create-work-form>
+          [category]="selectedCategory"></app-create-work-form>
+      </div>
+      <div *ngSwitchCase="'edit-work'">
+        <app-create-work-form
+          [work]="selectedCategory.works[0]"></app-create-work-form>
       </div>
     </div>
   </div>
@@ -33,27 +37,27 @@
   <span style="width: 25%; text-align: end">Price</span>
 </div>
 <ul id="accordion">
-  <ul *ngFor="let group of groups"
+  <ul *ngFor="let category of categories"
       class="card">
 
-    <div id="group"
+    <div id="category"
          class="card-header"
-         [attr.data-target]='"#collapse" + group.id'
+         [attr.data-target]='"#collapse" + category.id'
          data-toggle="collapse">
-      <div class="remove-img hidden-delete delete-category" (click)="deleteCategory(group)"></div>
-      <div class="group-title">{{group.title}}</div>
+      <div class="remove-img hidden-delete delete-category" (click)="deleteCategory(category)"></div>
+      <div class="category-title">{{category.title}}</div>
 
       <div class="category-buttons">
         <button class="create-work-button"
-                (click)="openCategoryEditForm(group)"></button>
+                (click)="openCategoryEditForm(category)"></button>
       </div>
     </div>
 
-    <div id="collapse{{group.id}}"
+    <div id="collapse{{category.id}}"
          class="collapse"
          data-parent="#accordion">
       <div class="card-body work">
-        <li *ngFor="let work of group.works">
+        <li *ngFor="let work of category.works">
           <span (click)="deleteWork(work)" class="hidden-delete remove-work remove-img"></span>
           <span style="flex-grow: 1">{{work.title}}</span>
           <span style="width: 25%; margin-right: 2px; text-align: end;">{{work.price}} UAH</span>

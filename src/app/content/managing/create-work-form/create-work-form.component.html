@@ -1,26 +1,26 @@
 <div>
-  <form (submit)="createWork()">
+  <form (submit)="work ? updateWork() : createWork()">
     <h2>
-      Добавить работу
+      {{work ? 'Редактировать работу' : 'Добавить работу'}}
     </h2>
 
     <div class="form-input-light">
-      <label for="work-title">название работы<span>{{work.title}}</span></label>
+      <label for="work-title">название работы<span>{{viewWork.title}}</span></label>
       <input type="text"
              name='work-title'
-             [(ngModel)]="work.title">
+             [(ngModel)]="viewWork.title">
     </div>
 
     <div class="form-input-light">
-      <label for="work-price">цена <span>{{work.price}}</span></label>
+      <label for="work-price">цена <span>{{viewWork.price}}</span></label>
       <input type="text"
              name='work-price'
-             [(ngModel)]="work.price">
+             [(ngModel)]="viewWork.price">
     </div>
     <button type="submit"
             id="create-button"
             class="light-button">
-      Создать
+      {{work ? 'Сохранить': 'Создать'}}
     </button>
   </form>
 </div>

@@ -1,11 +1,9 @@
 import {AfterViewInit, Component, ContentChild, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {Group} from '../../models/group';
-import {GroupService} from '../../services/group/group.service';
-import {Work} from '../../models/work';
-import {CreateWorkFormComponent} from '../../content/managing/create-work-form/create-work-form.component';
+import {CategoryService} from '../../services/category/category.service';
+import {Category} from '../../models/category';
 import {PopUpService} from '../../services/pop_up/pop-up.service';
 import {State} from '../../models/state';
-import {DomSanitizer} from '@angular/platform-browser';
+import {Work} from '../../models/work';
 
 @Component({
   selector: 'app-works',
@@ -13,27 +11,27 @@ import {DomSanitizer} from '@angular/platform-browser';
   styleUrls: ['./works.component.css']
 })
 export class WorksComponent implements OnInit{
-  public groups: Group[];
-  public groupEdition = false;
-  public selectedGroup: Group;
+  public categories: Category[];
+  public categoryEdition = false;
+  public selectedCategory: Category;
   public categoryCreation = false;
 
-  constructor(private groupsService: GroupService,
-              public popUpService: PopUpService,
-              private sanitizer: DomSanitizer) {
-    groupsService.getGroups().subscribe((groups) => this.groups = groups);
+  constructor(private categoryService: CategoryService,
+              public popUpService: PopUpService) {
+    categoryService.getCategories().subscribe((categories) => this.categories = categories);
   }
 
   ngOnInit() {
   }
 
-  openCategoryEditForm(group: Group) {
-    this.selectedGroup = group;
-    this.groupEdition = true;
+  openCategoryEditForm(category: Category) {
+    this.selectedCategory = category;
+    this.categoryEdition = true;
     event.stopPropagation();
     this.popUpService.initStates([
       new State(0, 'category'),
-      new State(1, 'create-work')]);
+      new State(1, 'create-work'),
+      new State(2, 'edit-work')]);
 
   }
 
@@ -43,12 +41,12 @@ export class WorksComponent implements OnInit{
 
   deleteWork(work: Work) {
     if (this.popUpService.confirm('Are you sure?')){
-      this.groupsService.deleteWork(work);
+      this.categoryService.deleteWork(work);
     }
   }
-  deleteCategory(category: Group) {
+  deleteCategory(category: Category) {
     if (this.popUpService.confirm('Are you sure?')) {
-      this.groupsService.deleteCategory(category);
+      this.categoryService.deleteCategory(category);
     }
     event.stopPropagation();
   }

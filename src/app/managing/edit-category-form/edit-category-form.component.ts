@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Group} from '../../models/group';
+import {Category} from '../../models/category';
 
 @Component({
   selector: 'app-edit-category-form',
@@ -7,7 +7,7 @@ import {Group} from '../../models/group';
   styleUrls: ['./edit-category-form.component.css']
 })
 export class EditCategoryFormComponent implements OnInit {
-  @Input() category: Group;
+  @Input() category: Category;
 
   constructor() { }
 

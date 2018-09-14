@@ -9,9 +9,9 @@ import { AddWorkFormComponent } from './content/project/add-work-form/add-work-f
 import { CreateWorkFormComponent } from './content/managing/create-work-form/create-work-form.component';
 import {FormsModule} from '@angular/forms';
 import { WorksComponent } from './managing/works/works.component';
-import {GroupService} from './services/group/group.service';
+import {CategoryService} from './services/category/category.service';
 import { CreateCategoryComponent } from './managing/create-category/create-category.component';
-import {PopUpService} from './services/pop_up/pop-up.service';
+import { PopUpService} from './services/pop_up/pop-up.service';
 import { EditCategoryFormComponent } from './managing/edit-category-form/edit-category-form.component';
 
 @NgModule({
@@ -31,7 +31,7 @@ import { EditCategoryFormComponent } from './managing/edit-category-form/edit-ca
   ],
   providers: [
     WorksService,
-    GroupService,
+    CategoryService,
     PopUpService
   ],
   bootstrap: [AppComponent]

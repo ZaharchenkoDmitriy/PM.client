@@ -11,6 +11,7 @@ export class PopUpService {
   public state: BehaviorSubject<State> = new BehaviorSubject(null);
   public currentState: State;
   public currentStates: State[];
+  private switchTimestamp = 0;
 
   constructor() {
     window.onresize =  () => {
@@ -49,7 +50,9 @@ export class PopUpService {
     const self = this;
 
     popUp.addEventListener('wheel', (event) => {
-      if (Math.abs(event.deltaX) + Math.abs(event.deltaY) > 100) {
+      if ((event.timeStamp - this.switchTimestamp > 20) && Math.abs(event.deltaX) + Math.abs(event.deltaY) > 100) {
+        console.log(event.timeStamp - this.switchTimestamp);
+        this.switchTimestamp = event.timeStamp;
         if (Math.abs(event.deltaY) * 2 > Math.abs(event.deltaX)) {
           event.deltaY < 0 ? self.nextState() : self.previousState();
         } else {
