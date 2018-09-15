@@ -13,6 +13,9 @@ import {CategoryService} from './services/category/category.service';
 import { CreateCategoryComponent } from './managing/create-category/create-category.component';
 import { PopUpService} from './services/pop_up/pop-up.service';
 import { EditCategoryFormComponent } from './managing/edit-category-form/edit-category-form.component';
+import { NavBarComponent } from './managing/nav-bar/nav-bar.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { ProjectsComponent } from './content/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +26,14 @@ import { EditCategoryFormComponent } from './managing/edit-category-form/edit-ca
     CreateWorkFormComponent,
     WorksComponent,
     CreateCategoryComponent,
-    EditCategoryFormComponent
+    EditCategoryFormComponent,
+    NavBarComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [
     WorksService,
