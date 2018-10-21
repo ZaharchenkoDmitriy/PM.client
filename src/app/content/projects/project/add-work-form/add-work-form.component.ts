@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Work} from '../../../models/work';
+import {Work} from '../../../../models/work';
 
 @Component({
   selector: 'app-add-work-form',

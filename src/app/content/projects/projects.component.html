@@ -1,4 +1,18 @@
-<ul>
-  <li class="project">Krupskoi</li>
-  <li class="project"></li>
+<ul id="projects-list">
+  <li class="project"
+      *ngFor="let project of projects">
+    <button type="button"
+            class="project-toggle"
+            data-toggle="collapse"
+            [attr.data-target]="'#collapse' + project.id"
+            aria-expanded="false"
+            [attr.aria-controls]="'collapse' + project.id">
+      {{project.title}}
+    </button>
+    <div class="collapse" id="collapse{{project.id}}">
+      <div class="card card-body">
+        {{project.title}}
+      </div>
+    </div>
+  </li>
 </ul>

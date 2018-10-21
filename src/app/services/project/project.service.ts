@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Project} from '../../models/project';
+import {CrudService} from '../crud-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
-  public projects: BehaviorSubject<Project[]> = new BehaviorSubject([]);
-  private projectsArr: Project[];
+export class ProjectService extends CrudService {
+  public projects: BehaviorSubject<Project[]>;
 
-  constructor() {
-    this.projects.subscribe((pr) => this.projectsArr = pr);
-}
+  postConstruct() {
+    this.projects = new BehaviorSubject([]);
+    this.initCrud('projects', this.projects);
+  }
 }

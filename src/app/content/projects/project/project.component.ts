@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {WorksService} from '../../services/work/works-service.service';
-import {Work} from '../../models/work';
+import {WorksService} from '../../../services/work/works-service.service';
+import {Work} from '../../../models/work';
 
 @Component({
   selector: 'app-project',
