@@ -18,7 +18,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { ProjectsComponent } from './content/projects/projects.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {ProjectService} from './services/project/project.service';
-import {CrudService} from './services/crud-service.service';
+import {CrudService} from './services/crud-service';
 
 @NgModule({
   declarations: [
