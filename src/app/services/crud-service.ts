@@ -1,27 +1,26 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {BehaviorSubject} from 'rxjs';
+
+// Class that generates default crud operations:
+// getAll, getById, create, delete, deleteById, update
+
+// To use this class, create class that extends CrudService
+// And create two variables:
+// crudObjects - variable that refers to all your objects
+// url - part of api that started after host
 
 @Injectable()
 export class CrudService {
-  private url: string;
-  private objects;
+  public url: string;
+  public objects: BehaviorSubject<any[]>;
 
-  constructor(private httpClient: HttpClient) {
-    this.postConstruct();
-  }
-
-  postConstruct() {
-  }
-
-  public initCrud(url: string, objects) {
-    this.objects = objects;
-    this.url = environment.host + url + '/';
-  }
+  constructor(private httpClient: HttpClient) {}
 
   public getAll() {
     const response = this.httpClient.get(this.url);
-    response.subscribe((resObjects) => this.objects.next(resObjects));
+    response.subscribe((resObjects: any[]) => this.objects.next(resObjects));
   }
 
   public getById(id: number) {
@@ -39,4 +38,30 @@ export class CrudService {
   public deleteById(id: number) {
     return this.httpClient.delete(this.url + id);
   }
+}
+
+export function crudObjects(target: CrudService, key: string): any {
+  let val;
+  return {
+    set: function (value) {
+      val = value;
+      target.objects = val;
+    },
+    get: function() {
+      return val;
+    }
+  };
+}
+
+export function crudUrl(target: CrudService, key: string): any {
+  let val;
+  return {
+    set: function (value) {
+      val = environment.host + '/' + value + '/';
+      target.url = environment.host + '/' + value + '/';
+    },
+    get: function() {
+      return val;
+    }
+  };
 }
