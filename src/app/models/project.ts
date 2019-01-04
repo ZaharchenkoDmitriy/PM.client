@@ -1,8 +1,10 @@
 export class Project {
-  constructor(title: string, id: number) {
+  constructor(title: string, address: string, id: number) {
     this.title = title;
+    this.address = address;
     this.id = id;
   }
   id: number;
   title: string;
+  address: string;
 }

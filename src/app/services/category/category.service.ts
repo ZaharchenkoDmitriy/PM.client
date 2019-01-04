@@ -17,7 +17,6 @@ export class CategoryService {
 
     this.categories.subscribe((gr) => this.categoriesArr = gr);
     categories.subscribe((ctgrs: Category[]) => {
-      console.log(ctgrs);
       this.categories.next(ctgrs);
     });
   }

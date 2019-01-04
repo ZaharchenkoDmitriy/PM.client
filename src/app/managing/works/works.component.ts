@@ -10,11 +10,12 @@ import {Work} from '../../models/work';
   templateUrl: './works.component.html',
   styleUrls: ['./works.component.css']
 })
-export class WorksComponent implements OnInit{
+export class WorksComponent implements OnInit {
   public categories: Category[];
   public categoryEdition = false;
   public selectedCategory: Category;
   public categoryCreation = false;
+  public test: any = {message: 'not READY'};
 
   constructor(private categoryService: CategoryService,
               public popUpService: PopUpService) {

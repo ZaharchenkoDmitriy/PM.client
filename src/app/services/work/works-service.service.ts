@@ -1,23 +1,25 @@
 import { Injectable } from '@angular/core';
 import {Work} from '../../models/work';
+import {crudObjects, CrudService, crudUrl} from '../crud-service';
+import {BehaviorSubject} from 'rxjs';
+import {Project} from '../../models/project';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WorksService {
-  private works: Work[] = [];
+export class WorksService extends CrudService {
+  private projectId: number = null;
 
-  constructor() {
-    const work = new Work('title', 20);
-    work.title = 'title';
-    this.works.push(work);
-  }
+  @crudObjects
+  public projects: BehaviorSubject<Project[]> = new BehaviorSubject([]);
 
-  getWorksForProject() {
-    return this.works;
-  }
+  @crudUrl
+  public crudUrl = `projects/${this.projectId}/works`;
 
-  createWork(work: Work) {
-    this.works.push(work);
+  public setProjectId = (projectId: number) => {
+    this.projectId = projectId;
+    this.crudUrl = `projects/${projectId}/works`;
   }
 }
+

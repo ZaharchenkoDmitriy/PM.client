@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {WorksService} from '../../../services/work/works-service.service';
 import {Work} from '../../../models/work';
 
@@ -8,14 +8,16 @@ import {Work} from '../../../models/work';
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
+  @Input() projectId: number;
 
   public works: Work[];
 
-  constructor(private worksService: WorksService) {
-    this.works = this.worksService.getWorksForProject();
-  }
+  constructor(private worksService: WorksService) {}
 
   ngOnInit() {
+    this.worksService.setProjectId(this.projectId);
+    this.worksService.getAll();
+    this.worksService.objects.subscribe(works => this.works = works);
   }
 
   openAddWorkForm() {
