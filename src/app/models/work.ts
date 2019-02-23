@@ -12,4 +12,9 @@ export class Work {
   price: number;
   cost: number;
   square: number;
+
+  static defaultWork(title: string, price: number) {
+    return new Work(0, title, price, 0, 0);
+  }
+
 }

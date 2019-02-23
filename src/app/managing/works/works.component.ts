@@ -19,7 +19,9 @@ export class WorksComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
               public popUpService: PopUpService) {
-    categoryService.getCategories().subscribe((categories) => this.categories = categories);
+    categoryService.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
   }
 
   ngOnInit() {
@@ -31,9 +33,7 @@ export class WorksComponent implements OnInit {
     event.stopPropagation();
     this.popUpService.initStates([
       new State(0, 'category'),
-      new State(1, 'create-work'),
-      new State(2, 'edit-work')]);
-
+      new State(1, 'create-work')]);
   }
 
   openCreateCategoryForm() {
@@ -41,7 +41,7 @@ export class WorksComponent implements OnInit {
   }
 
   deleteWork(work: Work) {
-    if (this.popUpService.confirm('Are you sure?')){
+    if (this.popUpService.confirm('Are you sure?')) {
       this.categoryService.deleteWork(work);
     }
   }

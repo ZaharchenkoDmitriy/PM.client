@@ -18,14 +18,9 @@
         <app-create-work-form
           [category]="selectedCategory"></app-create-work-form>
       </div>
-      <div *ngSwitchCase="'edit-work'">
-        <app-create-work-form
-          [work]="selectedCategory.works[0]"></app-create-work-form>
-      </div>
     </div>
   </div>
 </div>
-<div [(ngModel)]="test.message"></div>
 <app-create-category
   *ngIf="categoryCreation"
   (close)="categoryCreation = false"

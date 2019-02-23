@@ -13,7 +13,7 @@ export class CategoryService {
   private categoriesArr: Category[];
 
   constructor(private httpClient: HttpClient) {
-    const categories = this.httpClient.get(environment.host + '/categories');
+    const categories = this.httpClient.get(environment.host + '/work_categories');
 
     this.categories.subscribe((gr) => this.categoriesArr = gr);
     categories.subscribe((ctgrs: Category[]) => {
@@ -26,14 +26,18 @@ export class CategoryService {
   }
 
   createWorkForCategory(work: Work, category: Category) {
-    category.works.push(work);
-    this.categories.next(this.categoriesArr);
+    this.httpClient.post(environment.host + '/work_categories' + `/${category.id}/` + '/works', work).subscribe((response: any) => {
+      category.works.push(work);
+      this.categories.next(this.categoriesArr);
+    });
   }
 
   createCategory(category: Category) {
-    category.id = this.categoriesArr.length + 1;
-    this.categoriesArr.push(category);
-    this.categories.next(this.categoriesArr);
+    this.httpClient.post(environment.host + '/work_categories', category).subscribe((response: any) => {
+      category.id = response.id;
+      this.categoriesArr.push(category);
+      this.categories.next(this.categoriesArr);
+    });
   }
 
   deleteWork(work: Work) {
