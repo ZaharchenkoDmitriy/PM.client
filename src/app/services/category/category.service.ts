@@ -27,8 +27,8 @@ export class CategoryService {
   }
 
   createWorkForCategory(work: Work, category: Category) {
-    this.httpClient.post(this.url + `/${category.id}/` + '/works', work).subscribe((response: any) => {
-      category.works.push(work);
+    this.httpClient.post(this.url + `/${category.id}/` + '/works', work).subscribe((response: Work) => {
+      category.works.push(response);
       this.categories.next(this.categoriesArr);
     });
   }
@@ -43,16 +43,25 @@ export class CategoryService {
 
   deleteWork(work: Work) {
     const category = this.categoriesArr.find((gr) => gr.works.indexOf(work) !== -1);
-    category.works = category.works.filter((wk) => wk !== work );
-    this.categories.next(this.categoriesArr);
+    this.httpClient.delete(`${this.url}/${category.id}/works/${work.id}`).subscribe((response: any ) => {
+      category.works = category.works.filter((wk) => wk !== work);
+      this.categoriesArr = this.categoriesArr.filter(c => c.id !== category.id);
+      this.categoriesArr.push(category);
+      this.categories.next(this.categoriesArr);
+    });
   }
   deleteCategory(category: Category) {
-    this.categoriesArr = this.categoriesArr.filter((cgr) => cgr !== category);
-    this.categories.next(this.categoriesArr);
+    this.httpClient.delete(`${this.url}/${category.id}`).subscribe(_ => {
+      this.categoriesArr = this.categoriesArr.filter((cgr) => cgr !== category);
+      this.categories.next(this.categoriesArr);
+    });
   }
 
   updateWork(work: Work) {
-    this.categories.next(this.categoriesArr);
+    this.httpClient.put(`${this.url}/${work.work_category_id}/works/${work.id}`, work).subscribe((response: Work) => {
+      work = response;
+      this.categories.next(this.categoriesArr);
+    });
   }
 }
 
