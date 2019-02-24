@@ -19,6 +19,7 @@ import { ProjectsComponent } from './content/projects/projects.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {ProjectService} from './services/project/project.service';
 import {CrudService} from './services/crud-service';
+import { CreateProjectComponent } from './content/projects/create-project/create-project.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {CrudService} from './services/crud-service';
     EditCategoryFormComponent,
     NavBarComponent,
     ProjectsComponent,
+    CreateProjectComponent,
   ],
   imports: [
     BrowserModule,

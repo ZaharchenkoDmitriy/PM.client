@@ -1,3 +1,26 @@
+<div *ngIf="projectCreation" id="pop-up-background" (click)="projectCreation = false;">
+  <div id="container"
+       (click)="$event.stopPropagation()">
+    <div id="pop-up-navigation">
+      <ul>
+        <li *ngFor="let state of popUpService.currentStates"
+            [style.width]="100/popUpService.currentStates.length + '%'"
+            [class]="state.number == popUpService.currentState.number ? 'active' : ''">
+        </li>
+      </ul>
+    </div>
+    <div style="width: 95%; margin-left: 2.5%;" ngSwitch="{{popUpService.currentState.title}}">
+      <div *ngSwitchCase="'project'">
+        <app-create-project></app-create-project>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="headers">
+  <button id='create-project-button' (click)="openProjectCreationForm()"> Добавить проект</button>
+</div>
+
 <ul id="projects-list">
   <li class="project"
       *ngFor="let project of projects">

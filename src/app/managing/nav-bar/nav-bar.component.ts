@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ProjectService} from '../../services/project/project.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
   public menuClass = 'closed';
+  public selectedProject;
 
-  constructor() {}
+  constructor(private projectService: ProjectService) {
+    this.selectedProject = projectService.selectedProject;
+  }
 
   ngOnInit() {
   }
