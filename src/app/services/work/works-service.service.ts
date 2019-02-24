@@ -15,11 +15,11 @@ export class WorksService extends CrudService {
   public projects: BehaviorSubject<Project[]> = new BehaviorSubject([]);
 
   @crudUrl
-  public crudUrl = `projects/${this.projectId}/works`;
+  public crudUrl = `projects/${this.projectId}/project_works`;
 
   public setProjectId = (projectId: number) => {
     this.projectId = projectId;
-    this.crudUrl = `projects/${projectId}/works`;
+    this.crudUrl = `projects/${projectId}/project_works`;
   }
 }
 

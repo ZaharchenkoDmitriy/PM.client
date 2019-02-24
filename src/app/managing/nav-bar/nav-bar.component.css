@@ -23,12 +23,12 @@
 .dropdown-toggle:after {
   content: none;
 }
-
 .dropdown-menu {
   margin-top: -4.25rem;
   margin-left: -4px;
   height: 100vh;
   width: 60vw;
+  max-width: 250px;
   background-color: #666e7f;
   border: 1px solid rgba(242, 246, 255, 0.78);
 }
@@ -38,6 +38,7 @@
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 3.5rem;
+  text-align: center;
   border-bottom: 1px solid rgba(145, 150, 161, 0.84);
 }
 
@@ -49,4 +50,23 @@
 
 .nav-link {
   display: inline-block;
+}
+
+
+@keyframes menuOpen {
+  0% {
+    margin-left: -250px;
+    opacity: 0;
+  }
+  50% {
+    opacity: 40%;
+  }
+  100% {
+    margin: 0;
+    opacity: 1;
+  }
+}
+.open {
+  animation: menuOpen;
+  animation-duration: 500ms;
 }
