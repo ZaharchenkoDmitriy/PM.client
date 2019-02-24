@@ -11,9 +11,10 @@ import {environment} from '../../../environments/environment';
 export class CategoryService {
   private categories: BehaviorSubject<Category[]> = new BehaviorSubject([]);
   private categoriesArr: Category[];
+  private url = environment.host + '/work_categories';
 
   constructor(private httpClient: HttpClient) {
-    const categories = this.httpClient.get(environment.host + '/work_categories');
+    const categories = this.httpClient.get(this.url);
 
     this.categories.subscribe((gr) => this.categoriesArr = gr);
     categories.subscribe((ctgrs: Category[]) => {
@@ -26,14 +27,14 @@ export class CategoryService {
   }
 
   createWorkForCategory(work: Work, category: Category) {
-    this.httpClient.post(environment.host + '/work_categories' + `/${category.id}/` + '/works', work).subscribe((response: any) => {
+    this.httpClient.post(this.url + `/${category.id}/` + '/works', work).subscribe((response: any) => {
       category.works.push(work);
       this.categories.next(this.categoriesArr);
     });
   }
 
   createCategory(category: Category) {
-    this.httpClient.post(environment.host + '/work_categories', category).subscribe((response: any) => {
+    this.httpClient.post(this.url, category).subscribe((response: any) => {
       category.id = response.id;
       this.categoriesArr.push(category);
       this.categories.next(this.categoriesArr);
