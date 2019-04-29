@@ -21,7 +21,7 @@ export class CreateWorkFormComponent implements OnInit {
     if (this.work) {
       this.viewWork = this.work;
     } else {
-      // this.viewWork = new Work('', 0);
+      this.viewWork = Work.defaultWork('', 0);
     }
   }
 
@@ -31,7 +31,6 @@ export class CreateWorkFormComponent implements OnInit {
 
   createWork() {
     this.categoryService.createWorkForCategory(this.viewWork, this.category);
-    // this.viewWork = new Work('', 0.00);
     this.close.emit();
   }
 

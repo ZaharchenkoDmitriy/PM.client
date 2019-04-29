@@ -15,6 +15,5 @@ export class EditCategoryFormComponent implements OnInit {
   }
 
   saveCategory() {
-    console.log(this.category);
   }
 }

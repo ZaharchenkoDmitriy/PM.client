@@ -29,7 +29,13 @@ export class CrudService {
   }
 
   public create(obj: any) {
-    return this.httpClient.post(this.url, obj);
+    delete obj.id;
+    return this.httpClient.post(this.url, obj).subscribe((response: any) => {
+      obj.id = response.id;
+      const objects = this.objects.getValue();
+      objects.push(obj);
+      this.objects.next(objects);
+    });
   }
 
   public delete(obj: any) {

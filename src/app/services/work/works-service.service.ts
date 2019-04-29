@@ -9,17 +9,14 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class WorksService extends CrudService {
-  private projectId: number = null;
-
   @crudObjects
   public projects: BehaviorSubject<Project[]> = new BehaviorSubject([]);
 
   @crudUrl
-  public crudUrl = `projects/${this.projectId}/works`;
+  public crudUrl = ``;
 
-  public setProjectId = (projectId: number) => {
-    this.projectId = projectId;
-    this.crudUrl = `projects/${projectId}/works`;
+  setProjectId(projectId: number): void {
+    this.crudUrl = `projects/${projectId}/project_works`;
   }
 }
 

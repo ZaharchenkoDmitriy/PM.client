@@ -1,9 +1,13 @@
 <div id="placeholder"></div>
 <div id="navigation">
   <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-secondary dropdown-toggle"
+            type="button" id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" routerLink="project">{{(selectedProject | async)?.title}}</a>
       <a class="dropdown-item" routerLink="projects">Projects</a>
       <a class="dropdown-item" routerLink="managing">Managing</a>
     </div>
