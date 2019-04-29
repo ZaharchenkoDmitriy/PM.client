@@ -17,12 +17,13 @@ export class ProjectComponent implements OnInit {
   public works: BehaviorSubject<Work[]>;
   public project: Project;
 
-  constructor(private worksService: WorksService, private projectsService: ProjectService) {
-    this.projectsService.selectedProject.subscribe(p => this.project = p);
+  constructor(private worksService: WorksService,
+              private projectsService: ProjectService) {
   }
 
 
   ngOnInit() {
+    this.projectsService.selectedProject.subscribe(p => this.project = p);
     this.worksService.setProjectId(this.project.id);
     this.worksService.getAll();
     this.works = this.worksService.objects;

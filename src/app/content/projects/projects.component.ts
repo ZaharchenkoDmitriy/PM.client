@@ -4,6 +4,7 @@ import {ProjectService} from '../../services/project/project.service';
 import {PopUpService} from '../../services/pop_up/pop-up.service';
 import {State} from '../../models/state';
 import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -13,7 +14,7 @@ import {BehaviorSubject} from 'rxjs';
 export class ProjectsComponent implements OnInit {
   public projects: BehaviorSubject<Project[]>;
   public projectCreation = false;
-  constructor(private projectService: ProjectService, public popUpService: PopUpService) {
+  constructor(private projectService: ProjectService, public popUpService: PopUpService, private router: Router) {
     this.popUpService.initStates([new State(0, 'project')]);
   }
 
@@ -23,5 +24,10 @@ export class ProjectsComponent implements OnInit {
 
   openProjectCreationForm() {
     this.projectCreation = true;
+  }
+
+  selectProject(project: Project) {
+    this.projectService.selectProject(project);
+    this.router.navigate([`projects/${project.id}`]);
   }
 }
