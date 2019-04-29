@@ -1,0 +1,36 @@
+<div>
+  <form (submit)="projectWork ? updateProjectWork() : createProjectWork()">
+    <h2>
+      {{projectWork ? 'Редактировать работу' : 'Добавить работу'}}
+    </h2>
+
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="categoriesDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{selectedCategory ? selectedCategory.title : 'Выберите категорию'}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="categoriesDropdownMenu">
+        <a *ngFor="let category of categories" class="dropdown-item" (click)="changeCategory(category)">{{category.title}}</a>
+      </div>
+    </div>
+    <div class="dropdown" *ngIf="selectedCategory">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="worksDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{selectedWork ? selectedWork.title : 'Выберите работу'}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="worksDropdownMenu">
+        <a *ngFor="let work of selectedCategory.works" class="dropdown-item" (click)="selectWork(work)">{{work.title}}</a>
+      </div>
+    </div>
+
+    <div class="form-input-light">
+      <label for="work-price">цена <span>{{viewProjectWork.price}}</span></label>
+      <input type="text"
+             name='work-price'
+             [(ngModel)]="viewProjectWork.price">
+    </div>
+    <button type="submit"
+            id="create-button"
+            class="light-button">
+      {{projectWork ? 'Сохранить': 'Создать'}}
+    </button>
+  </form>
+</div>

@@ -20,6 +20,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {ProjectService} from './services/project/project.service';
 import {CrudService} from './services/crud-service';
 import { CreateProjectComponent } from './content/projects/create-project/create-project.component';
+import { CreateWorkComponent } from './content/projects/project_works/create-work/create-work.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CreateProjectComponent } from './content/projects/create-project/create
     NavBarComponent,
     ProjectsComponent,
     CreateProjectComponent,
+    CreateWorkComponent,
   ],
   imports: [
     BrowserModule,

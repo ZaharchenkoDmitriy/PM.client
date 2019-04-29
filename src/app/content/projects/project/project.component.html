@@ -1,3 +1,29 @@
+<div *ngIf="popUpOpened" id="pop-up-background" (click)="popUpOpened = false;">
+  <div id="container"
+       (click)="$event.stopPropagation()">
+    <div id="pop-up-navigation">
+      <ul>
+        <li *ngFor="let state of popUpService.currentStates"
+            [style.width]="100/popUpService.currentStates.length + '%'"
+            [class]="state.number == popUpService.currentState.number ? 'active' : ''">
+        </li>
+      </ul>
+    </div>
+    <div style="width: 95%; margin-left: 2.5%;" ngSwitch="{{popUpService.currentState.title}}">
+      <div *ngSwitchCase="'work'">
+        <app-create-work></app-create-work>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="project-info">
+  <h2>{{project.title}}</h2>
+  <ul>
+    <li>{{project.address}}</li>
+  </ul>
+</div>
+
 <ul>
   <li *ngFor="let work of works | async">
     {{work.title}}
@@ -7,4 +33,4 @@
 <button (click)="openAddWorkForm()">
   Add work
 </button>
-p
+

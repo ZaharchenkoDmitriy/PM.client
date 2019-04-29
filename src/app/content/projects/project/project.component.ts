@@ -4,6 +4,8 @@ import {Work} from '../../../models/work';
 import {BehaviorSubject} from 'rxjs';
 import {ProjectService} from '../../../services/project/project.service';
 import {Project} from '../../../models/project';
+import {PopUpService} from '../../../services/pop_up/pop-up.service';
+import {State} from '../../../models/state';
 
 
 @Component({
@@ -16,9 +18,11 @@ export class ProjectComponent implements OnInit {
 
   public works: BehaviorSubject<Work[]>;
   public project: Project;
+  public popUpOpened = false;
 
   constructor(private worksService: WorksService,
-              private projectsService: ProjectService) {
+              private projectsService: ProjectService,
+              public popUpService: PopUpService) {
   }
 
 
@@ -27,8 +31,11 @@ export class ProjectComponent implements OnInit {
     this.worksService.setProjectId(this.project.id);
     this.worksService.getAll();
     this.works = this.worksService.objects;
+
+    this.popUpService.initStates([new State(0, 'work')]);
   }
 
   openAddWorkForm() {
+    this.popUpOpened = true;
   }
 }

@@ -22,6 +22,10 @@ export class CategoryService {
     });
   }
 
+  getCategoriesList() {
+    return this.httpClient.get(`${this.url}?list_view=true`);
+  }
+
   getCategories() {
     return this.categories;
   }
