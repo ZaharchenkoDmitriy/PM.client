@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let work of works">
+  <li *ngFor="let work of works | async">
     {{work.title}}
   </li>
 </ul>

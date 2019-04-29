@@ -21,6 +21,7 @@ export class CrudService {
   public getAll() {
     const response = this.httpClient.get(this.url);
     response.subscribe((resObjects: any[]) => this.objects.next(resObjects));
+    return this.objects;
   }
 
   public getById(id: number) {

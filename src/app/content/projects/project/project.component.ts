@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {WorksService} from '../../../services/work/works-service.service';
 import {Work} from '../../../models/work';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-project',
@@ -10,14 +11,15 @@ import {Work} from '../../../models/work';
 export class ProjectComponent implements OnInit {
   @Input() projectId: number;
 
-  public works: Work[];
+  public works: BehaviorSubject<Work[]>;
 
   constructor(private worksService: WorksService) {}
 
   ngOnInit() {
     this.worksService.setProjectId(this.projectId);
     this.worksService.getAll();
-    this.worksService.objects.subscribe(works => this.works = works);
+    // TODO: Change to this realisation
+    this.works = this.worksService.objects;
   }
 
   openAddWorkForm() {
