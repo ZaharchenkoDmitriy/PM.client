@@ -23,7 +23,7 @@
 
 <ul id="projects-list">
   <li class="project"
-      *ngFor="let project of projects">
+      *ngFor="let project of projects | async">
     <button type="button"
             class="project-toggle"
             data-toggle="collapse"
