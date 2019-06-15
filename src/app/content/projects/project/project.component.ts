@@ -20,17 +20,21 @@ export class ProjectComponent implements OnInit {
   public project: Project;
   public popUpOpened = false;
 
-  constructor(private worksService: WorksService,
-              private projectsService: ProjectService,
+  constructor(public worksService: WorksService,
+              public projectsService: ProjectService,
               public popUpService: PopUpService) {
   }
 
 
   ngOnInit() {
-    this.projectsService.selectedProject.subscribe(p => this.project = p);
-    this.worksService.setProjectId(this.project.id);
-    this.worksService.getAll();
-    this.works = this.worksService.objects;
+    this.projectsService.selectedProject.subscribe(p => {
+      this.project = p;
+      if (this.project) {
+        this.worksService.setProjectId(this.project.id);
+        this.worksService.getAll();
+        this.works = this.worksService.objects;
+      }
+    });
 
     this.popUpService.initStates([new State(0, 'work')]);
   }

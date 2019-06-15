@@ -8,10 +8,9 @@ import {ProjectService} from '../../services/project/project.service';
 })
 export class NavBarComponent implements OnInit {
   public menuClass = 'closed';
-  public selectedProject;
 
-  constructor(private projectService: ProjectService) {
-    this.selectedProject = projectService.selectedProject;
+  constructor(public projectService: ProjectService) {
+
   }
 
   ngOnInit() {

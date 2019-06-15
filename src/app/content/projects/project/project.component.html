@@ -11,26 +11,29 @@
     </div>
     <div style="width: 95%; margin-left: 2.5%;" ngSwitch="{{popUpService.currentState.title}}">
       <div *ngSwitchCase="'work'">
-        <app-create-work></app-create-work>
+        <app-create-work [worksService]="worksService" (close)="popUpOpened = false"></app-create-work>
       </div>
     </div>
   </div>
 </div>
 
-<div id="project-info">
-  <h2>{{project.title}}</h2>
+<div *ngIf="project">
+  <div id="project-info">
+    <h2>{{project.title}}</h2>
+    <ul>
+      <li>{{project.address}}</li>
+    </ul>
+  </div>
+
   <ul>
-    <li>{{project.address}}</li>
+    <li *ngFor="let work of works | async">
+      {{work.title}}
+    </li>
   </ul>
+
+  <button (click)="openAddWorkForm()">
+    Add work
+  </button>
 </div>
 
-<ul>
-  <li *ngFor="let work of works | async">
-    {{work.title}}
-  </li>
-</ul>
-
-<button (click)="openAddWorkForm()">
-  Add work
-</button>
 

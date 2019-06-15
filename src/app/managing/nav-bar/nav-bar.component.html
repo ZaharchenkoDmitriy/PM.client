@@ -7,7 +7,7 @@
             aria-haspopup="true" aria-expanded="false">
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" [routerLink]="'projects/' + selectedProject.id | async">{{(selectedProject | async)?.title}}</a>
+      <a class="dropdown-item">{{(projectService.selectedProject | async)?.title}}</a>
       <a class="dropdown-item" routerLink="projects">Projects</a>
       <a class="dropdown-item" routerLink="managing">Managing</a>
     </div>

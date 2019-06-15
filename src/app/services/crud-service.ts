@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 // Class that generates default crud operations:
 // getAll, getById, create, delete, deleteById, update
@@ -19,8 +19,10 @@ export class CrudService {
   constructor(private httpClient: HttpClient) {}
 
   public getAll() {
-    const response = this.httpClient.get(this.url);
-    response.subscribe((resObjects: any[]) => this.objects.next(resObjects));
+    this.httpClient
+      .get(this.url)
+      .subscribe((resObjects: any[]) => this.objects.next(resObjects));
+
     return this.objects;
   }
 
@@ -28,13 +30,14 @@ export class CrudService {
     return this.httpClient.get(this.url + id);
   }
 
-  public create(obj: any) {
-    delete obj.id;
-    return this.httpClient.post(this.url, obj).subscribe((response: any) => {
-      obj.id = response.id;
-      const objects = this.objects.getValue();
-      objects.push(obj);
-      this.objects.next(objects);
+  public create(obj: any, withId = false) {
+    if (!withId) {
+      delete obj.id;
+    }
+    return this.httpClient.post(this.url, obj)
+      .subscribe((response: any) => {
+        obj.id = response.id;
+        this.objects.next([...this.objects.getValue(), obj]);
     });
   }
 
