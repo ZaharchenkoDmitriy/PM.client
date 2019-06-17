@@ -27,7 +27,10 @@
 
   <ul>
     <li *ngFor="let work of works | async">
-      {{work.title}}
+      <span>{{work.title}}</span>
+      <span>{{work.square}}</span>
+      <span>{{work.cost}}</span>
+      <button (click)="removeWork(work)"> Удалить </button>
     </li>
   </ul>
 

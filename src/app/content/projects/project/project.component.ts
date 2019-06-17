@@ -39,6 +39,10 @@ export class ProjectComponent implements OnInit {
     this.popUpService.initStates([new State(0, 'work')]);
   }
 
+  removeWork(work: Work) {
+    this.worksService.delete(work);
+  }
+
   openAddWorkForm() {
     this.popUpOpened = true;
   }
