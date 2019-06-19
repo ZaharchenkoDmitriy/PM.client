@@ -21,17 +21,32 @@
   <div id="project-info">
     <h2>{{project.title}}</h2>
     <ul>
-      <li>{{project.address}}</li>
+      <li><span>Адресс: </span>{{project.address}}</li>
+      <li><span>Период работы над проектом: </span>{{ project.dateStart | date : "dd.MM.y" }} - {{ project.dateEnd | date : "dd.MM.y" }}</li>
+      <li><span>Стоимость проекта: </span>{{project.projectCost}}</li>
     </ul>
   </div>
 
-  <ul>
-    <li *ngFor="let work of works | async">
-      <span>{{work.title}}</span>
-      <span>{{work.square}}</span>
-      <span>{{work.cost}}</span>
-      <button (click)="removeWork(work)"> Удалить </button>
-    </li>
+  <ul id="accordion">
+    <ul class="card" *ngFor="let category of [{id: 1, title: 'Ex'}, {id: 2, title: 'Ex2'}]">
+      <div id="category" class="card-header"
+           [attr.data-target]='"#collapse" + category.id'
+           data-toggle="collapse">
+        <div class="category-title">{{category.title}}</div>
+      </div>
+      <ul id="collapse{{category.id}}"
+          class="collapse"
+          data-parent="#accordion">
+        <div class="card-body work">
+          <li *ngFor="let work of works | async">
+            <span>{{work.title}}</span>
+            <span>{{work.square}}</span>
+            <span>{{work.cost}}</span>
+            <button (click)="removeWork(work)"> Удалить </button>
+          </li>
+        </div>
+      </ul>
+    </ul>
   </ul>
 
   <button (click)="openAddWorkForm()">

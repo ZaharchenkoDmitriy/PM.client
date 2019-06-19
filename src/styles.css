@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
+li {
+  list-style-type: none;
+}
+ul {
+  padding: 0;
+}
+
 .form-input-light {
   position: relative;
   margin: 0.5rem 0;

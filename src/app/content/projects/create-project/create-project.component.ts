@@ -13,10 +13,15 @@ export class CreateProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+    // @ts-ignore
+    $('.input-daterange input').each(function(input) {
+      // @ts-ignore
+      $(input).datepicker('clearDates');
+    });
   }
 
   createProject(event) {
     event.preventDefault();
-    console.log(this.projectService.create(this.project));
+    this.projectService.create(this.project);
   }
 }

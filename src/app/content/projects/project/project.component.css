@@ -1,0 +1,26 @@
+#project-info {
+
+}
+
+#project-info ul {
+  list-style-type: none;
+}
+.work {
+  color: #2F333F;
+  background-color: #F2F6FF;
+  padding-bottom: 2px;
+}
+
+#category {
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: #666E7F;
+  color: #CED6E5;
+  padding-bottom: 0;
+}
+.category-title {
+  font-size: 1.7rem;
+  font-weight: bold;
+  flex-grow: 1;
+}

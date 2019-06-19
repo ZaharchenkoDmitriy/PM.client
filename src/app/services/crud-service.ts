@@ -15,6 +15,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 export class CrudService {
   public url: string;
   public objects: BehaviorSubject<any[]>;
+  private self = this;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -42,11 +43,17 @@ export class CrudService {
   }
 
   public delete(obj: any) {
-    return this.httpClient.delete(this.url + obj.id);
+    return this.httpClient.delete(this.url + obj.id)
+      .subscribe((res: any) => {
+        this.objects.next(this.objects.getValue().filter((o: any) => o.id !== res.id));
+      });
   }
 
   public deleteById(id: number) {
-    return this.httpClient.delete(this.url + id);
+    return this.httpClient.delete(this.url + id)
+      .subscribe((res: any) => {
+        this.objects.next(this.objects.getValue().filter((o: any) => o.id !== res.id));
+      });
   }
 }
 
