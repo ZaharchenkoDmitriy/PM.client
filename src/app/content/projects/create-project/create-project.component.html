@@ -1,11 +1,14 @@
 <form action="" (ngSubmit)="createProject($event)">
   <input type="text" name="project-title" [(ngModel)]="project.title">
+  <input type="text" name="project-title" [(ngModel)]="project.address">
 
   <div class="input-group input-daterange">
-    <input type="text" class="form-control" value="2012-04-05">
-    <div class="input-group-addon">to</div>
-    <input type="text" class="form-control" value="2012-04-19">
+    <input type="text" class="form-control" value="2012-04-05" id="date-start">
+    <div class="input-group-addon">по</div>
+    <input type="text" class="form-control" value="2012-04-19" id="date-end">
   </div>
 
   <button type="submit">Добавить</button>
 </form>
+
+

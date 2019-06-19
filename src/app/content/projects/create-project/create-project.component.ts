@@ -14,14 +14,16 @@ export class CreateProjectComponent implements OnInit {
 
   ngOnInit() {
     // @ts-ignore
-    $('.input-daterange input').each(function(input) {
-      // @ts-ignore
-      $(input).datepicker('clearDates');
-    });
+    setTimeout( _ => {$('.input-daterange').datepicker()}, 100);
   }
 
   createProject(event) {
     event.preventDefault();
+    // @ts-ignore
+    this.project.date_start = $('#date-start').attr('value');
+    // @ts-ignore
+    this.project.date_end = $('#date-end').attr('value');
+
     this.projectService.create(this.project);
   }
 }

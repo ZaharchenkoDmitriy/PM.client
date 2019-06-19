@@ -27,6 +27,18 @@ export class CrudService {
     return this.objects;
   }
 
+  public getByFilters(filters) {
+    let formattedFilters = '?';
+    for (const k in filters) {
+      if (typeof filters[k] !== 'function') {
+        formattedFilters += `filters[]=${k}:${filters[k]}`;
+      }
+    }
+    this.httpClient
+      .get(`${this.url}${formattedFilters}`)
+      .subscribe((resObjects: any[]) => this.objects.next(resObjects));
+  }
+
   public getById(id: number) {
     return this.httpClient.get(this.url + id);
   }
@@ -38,7 +50,7 @@ export class CrudService {
     return this.httpClient.post(this.url, obj)
       .subscribe((response: any) => {
         obj.id = response.id;
-        this.objects.next([...this.objects.getValue(), obj]);
+        this.objects.next([...this.objects.getValue(), response]);
     });
   }
 

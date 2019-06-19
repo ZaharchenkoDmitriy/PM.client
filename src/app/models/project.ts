@@ -8,6 +8,7 @@ export class Project {
   title: string;
   address: string;
   projectCost: number;
+  worksCount: number;
   dateStart: Date;
   dateEnd: Date;
 }

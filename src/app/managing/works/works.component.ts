@@ -32,8 +32,9 @@ export class WorksComponent implements OnInit {
     this.categoryEdition = true;
     event.stopPropagation();
     this.popUpService.initStates([
-      new State(0, 'category'),
-      new State(1, 'create-work')]);
+      new State(1, 'create-work'),
+      new State(0, 'category')
+      ]);
   }
 
   openCreateCategoryForm() {
