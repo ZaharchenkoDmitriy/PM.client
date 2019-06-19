@@ -18,7 +18,7 @@
 </div>
 
 <div id="headers">
-  <button id='create-project-button' (click)="openProjectCreationForm()"> Добавить проект</button>
+  <button id='create-project-button' style="background: none; color: white; border: none" (click)="openProjectCreationForm()"> Добавить проект</button>
 </div>
 
 <ul id="projects-list">
@@ -35,6 +35,10 @@
     <div class="collapse" id="collapse{{project.id}}">
       <div class="card card-body" (click)="selectProject(project)">
         <div class="project-address">{{ project.address }}</div>
+        <div class="project-address">{{ project.dateStart | date : "dd.MM.y" }} - {{ project.dateEnd | date : "dd.MM.y" }}</div>
+        <div class="project-address">{{ project.projectCost}}UAH</div>
+        <div class="project-address">{{ project.worksCount}} работ</div>
+
       </div>
     </div>
   </li>

@@ -41,6 +41,8 @@ export class ProjectComponent implements OnInit {
 
   removeWork(work: Work) {
     this.worksService.delete(work);
+    this.project.worksCount -= 1;
+    this.project.projectCost -= work.cost;
   }
 
   openAddWorkForm() {

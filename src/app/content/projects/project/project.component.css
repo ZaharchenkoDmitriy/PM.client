@@ -1,5 +1,18 @@
 #project-info {
-
+  background: #2F333F;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
+}
+h2{
+  font-size: 4rem;
+}
+#project-info li {
+  color: white;
+  font-size: 2rem;
+}
+#project-info span {
+  opacity: 0.7;
 }
 
 #project-info ul {
@@ -10,13 +23,26 @@
   background-color: #F2F6FF;
   padding-bottom: 2px;
 }
+.hidden-delete {
+  width: .5rem;
+  height: .5rem;
+  margin-right: 0.5rem;
+  margin-left: -0.5rem;
+}
+.hidden-delete:after {
+  height: 1rem;
+  display: inline-block;
+  margin-top: -0.2rem;
+  content: '';
+  width: 1rem;
+}
 
 #category {
   height: 4rem;
   display: flex;
   justify-content: space-between;
   background-color: #666E7F;
-  color: #CED6E5;
+  color: white;
   padding-bottom: 0;
 }
 .category-title {

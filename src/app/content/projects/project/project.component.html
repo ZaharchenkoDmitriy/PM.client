@@ -22,35 +22,27 @@
     <h2>{{project.title}}</h2>
     <ul>
       <li><span>Адресс: </span>{{project.address}}</li>
-      <li><span>Период работы над проектом: </span>{{ project.dateStart | date : "dd.MM.y" }} - {{ project.dateEnd | date : "dd.MM.y" }}</li>
-      <li><span>Стоимость проекта: </span>{{project.projectCost}}</li>
+      <li><span>Период работы над проектом: </span></li>
+      <li>{{ project.dateStart | date : "dd.MM.y" }} - {{ project.dateEnd | date : "dd.MM.y" }}</li>
+      <li><span>Стоимость проекта: </span>{{project.projectCost}}UAH</li>
     </ul>
   </div>
 
   <div id="headers">
-    <span style="width: 70%">Работа</span>
+    <span style="width: 47.25%">Работа</span>
     <div id='add-category-button' (click)="openAddWorkForm()"></div>
-    <span style="width: 25%; text-align: end">Квадратура/Стоимость</span>
+    <span style="width: 47.25%; text-align: end">м²/Стоимость</span>
   </div>
-  <ul id="accordion">
-    <ul class="card" *ngFor="let category of [{id: 1, title: 'Ex'}, {id: 2, title: 'Ex2'}]">
-      <div id="category" class="card-header"
-           [attr.data-target]='"#collapse" + category.id'
-           data-toggle="collapse">
-        <div class="category-title">{{category.title}}</div>
+
+  <ul class="card" style="margin: 0" *ngFor="let work of works | async">
+    <div id="category" class="card-header"
+         data-toggle="collapse" >
+      <div class="category-title" >
+        <span (click)="removeWork(work)" class="hidden-delete remove-work remove-img"></span>
+        <span>{{work.title}}</span>
+        <span style="float: right">{{work.square}} / {{work.cost}} UAH</span>
       </div>
-      <ul id="collapse{{category.id}}"
-          class="collapse"
-          data-parent="#accordion">
-        <div class="card-body work">
-          <li *ngFor="let work of works | async">
-            <button (click)="removeWork(work)"> Удалить </button>
-            <span>{{work.title}}</span>
-            <span style="float: right">{{work.square}}/{{work.cost}}</span>
-          </li>
-        </div>
-      </ul>
-    </ul>
+    </div>
   </ul>
 </div>
 

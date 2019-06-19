@@ -1,0 +1,19 @@
+.dropdown button{
+  width: 300px;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+.dropdown .dropdown-menu{
+  width: 300px;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+input{
+  width: 300px;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+button {
+  width: 150px;
+  height: 50px;
+}
