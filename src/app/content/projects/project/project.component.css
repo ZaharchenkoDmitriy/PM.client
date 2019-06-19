@@ -24,3 +24,25 @@
   font-weight: bold;
   flex-grow: 1;
 }
+#add-category-button {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  margin: auto;
+  margin-top: 5px;
+  background-size: cover;
+  background-image: url('/assets/img/icons/category-add-button.png');
+}
+
+#headers {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 12px;
+  font-weight: bold;
+  font-size: 2rem;
+  background-color: #2F333F;
+  color: #CED6E5;
+  height: 3.5rem;
+  line-height: 4rem;
+  position: relative;
+}

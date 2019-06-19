@@ -31,11 +31,12 @@ export class CrudService {
     let formattedFilters = '?';
     for (const k in filters) {
       if (typeof filters[k] !== 'function') {
-        formattedFilters += `filters[]=${k}:${filters[k]}`;
+        formattedFilters += `filters[]=${k}:${filters[k]}&`;
       }
     }
+
     this.httpClient
-      .get(`${this.url}${formattedFilters}`)
+      .get(`${this.url}${formattedFilters.substring(0, formattedFilters.length - 1)}`)
       .subscribe((resObjects: any[]) => this.objects.next(resObjects));
   }
 

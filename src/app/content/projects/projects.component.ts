@@ -20,7 +20,7 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.projects = this.projectService.getAll();
-    this.projectService.getByFilters({items_count: ' > 0'});
+    // this.projectService.getByFilters({date_range: '02-03-2019,02-04-2019', cost_range: '>,4'});
   }
 
   openProjectCreationForm() {

@@ -27,6 +27,11 @@
     </ul>
   </div>
 
+  <div id="headers">
+    <span style="width: 70%">Работа</span>
+    <div id='add-category-button' (click)="openAddWorkForm()"></div>
+    <span style="width: 25%; text-align: end">Квадратура/Стоимость</span>
+  </div>
   <ul id="accordion">
     <ul class="card" *ngFor="let category of [{id: 1, title: 'Ex'}, {id: 2, title: 'Ex2'}]">
       <div id="category" class="card-header"
@@ -39,19 +44,14 @@
           data-parent="#accordion">
         <div class="card-body work">
           <li *ngFor="let work of works | async">
-            <span>{{work.title}}</span>
-            <span>{{work.square}}</span>
-            <span>{{work.cost}}</span>
             <button (click)="removeWork(work)"> Удалить </button>
+            <span>{{work.title}}</span>
+            <span style="float: right">{{work.square}}/{{work.cost}}</span>
           </li>
         </div>
       </ul>
     </ul>
   </ul>
-
-  <button (click)="openAddWorkForm()">
-    Add work
-  </button>
 </div>
 
 
